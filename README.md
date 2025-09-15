@@ -27,21 +27,57 @@
 
 ## Project setup
 
+Follow these steps to get the project running locally.
+
+### 1. Install Node using NVM
+
+We recommend using **Node Version Manager (nvm)** to install Node.js.
+
+- Install [nvm](https://github.com/nvm-sh/nvm) if you don't have it.
+
+- Install Node.js 20.17.0
+
 ```bash
-$ npm install
+nvm install 20.17.0
+```
+
+- Use Node.js 20.17.0
+
+```bash
+nvm use 20.17.0
+```
+
+- Optional: set it as default
+
+```bash
+nvm alias default 20.17.0
+```
+
+### 2. Setup Yarn
+
+This project already has a `yarn.lock` file. Please use Yarn for installing dependencies.
+
+```bash
+npm install -g yarn
+```
+
+Install dependencies
+
+```bash
+yarn install
 ```
 
 ## Compile and run the project
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 ## Formatting

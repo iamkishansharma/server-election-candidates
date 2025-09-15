@@ -1,10 +1,32 @@
 {
   "name": "nestjs-boilerplate-2",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
+  "description": "Multilingual Backend Server for Open Source Nepal",
+  "author": "OSNEPAL Contributors",
+  "private": false,
   "license": "MIT",
+    "homepage": "https://github.com/osnepal/server-election-candidates#readme",
+    
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osnepal/server-election-candidates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/osnepal/server-election-candidates/issues"
+  },
+  "keywords": [
+    "nestjs",
+    "typeorm",
+    "typescript",
+    "multilingual",
+    "open-source",
+    "nepal",
+    "osnepal"
+  ],
+  "engines": {
+    "node": "=20.17.0",
+    "yarn": "=1.22.22"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
