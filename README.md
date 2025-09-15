@@ -90,6 +90,56 @@ $ yarn start:dev
 $ yarn start:prod # needs .env.production
 ```
 
+## Generating Models / Resources
+
+You can generate a full NestJS resource for your entity using the Nest CLI.
+
+### 1️⃣ Generate a Resource
+
+Run the following command:
+
+```bash
+nest g resource
+```
+
+You will be prompted to select:
+
+1. Resource Name in Plural for eg: `political-parties` it will be the name of the table
+
+2. Transport layer
+   Choose: REST API
+
+3. Generate CRUD entry points
+   Choose: Yes (this will create create, findAll, findOne, update, remove methods automatically)
+
+### 2️⃣ What It Generates
+
+The CLI will create the following structure:
+
+```
+src/political-parties/
+├── dto/
+│   ├── create-political-party.dto.ts
+│   └── update-political-party.dto.ts
+├── political-parties.controller.ts
+├── political-parties.service.ts
+├── political-parties.module.ts
+```
+
+DTOs: Create and Update classes ready for validation.
+
+Service: Stub methods for CRUD operations.
+
+Controller: REST endpoints prewired.
+
+### 3️⃣ Next Steps
+
+Replace stub logic in the service with your repository methods.
+
+Add validation pipes and class-validator decorators in DTOs.
+
+Inject PoliticalPartyRepository into the service for database operations.
+
 ## Formatting
 
 To normalize your files:
