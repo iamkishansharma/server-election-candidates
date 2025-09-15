@@ -1,10 +1,17 @@
 import { IsEmail, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { isUnique } from 'src/decorators/is-unique';
 
 export class AuthCredentialsDto {
   @IsString()
   @MinLength(8)
   @MaxLength(32)
-  first_name: string;
+  full_name: string;
+
+  @IsString()
+  @isUnique({ column: 'username', tableName: 'users' })
+  @MinLength(3)
+  @MaxLength(12)
+  username: string;
 
   @IsEmail()
   email: string;

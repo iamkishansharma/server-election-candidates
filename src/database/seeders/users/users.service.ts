@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Users } from 'src/models/auth/entities/user.entity';
 import { IUsers } from 'src/models/auth/interfaces/users.interface';
 import { UsersRepository } from 'src/models/auth/users.repository';
-import { Repository } from 'typeorm';
 import { users } from './data';
 
 /**
@@ -29,7 +27,7 @@ export class UserSeederService {
     return users.map(
       async (user: IUsers) =>
         await this.userRepository
-          .findOneBy({ first_name: user.first_name })
+          .findOneBy({ full_name: user.full_name })
           .then(async (dbUser) => {
             // We check if a user already exists.
             // If it does don't create a new one.
@@ -41,7 +39,7 @@ export class UserSeederService {
               await this.userRepository.save(user),
             );
           })
-          .catch((error) => Promise.reject(error)),
+          .catch((error: Error) => Promise.reject(error)),
     );
   }
 }

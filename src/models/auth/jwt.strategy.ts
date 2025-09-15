@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
@@ -13,15 +16,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     configService: ConfigService,
   ) {
     super({
-      secretOrKey: configService.get('JWT_SECRET'),
+      secretOrKey: configService.get<string>('JWT_SECRET'),
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }
 
   async validate(payload: JwtPayload): Promise<Users> {
-    const { email } = payload;
+    const { username } = payload;
 
-    const user: Users | null = await this.usersRepository.findOneBy({ email });
+    const user: Users | null = await this.usersRepository.findOneBy({ username });
 
     if (!user) {
       throw new UnauthorizedException();

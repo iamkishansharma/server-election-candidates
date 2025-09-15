@@ -10,13 +10,13 @@ export class Seeder {
   }
   async seed() {
     await this.users()
-      .then((completed) => {
+      .then(async (completed) => {
         this.logger.debug('Successfuly completed seeding users...');
-        Promise.resolve(completed);
+        await Promise.resolve(completed);
       })
-      .catch((error) => {
+      .catch(async (error: Error) => {
         this.logger.error('Failed seeding users...');
-        Promise.reject(error);
+        await Promise.reject(error);
       });
   }
   async users() {
@@ -30,6 +30,6 @@ export class Seeder {
         );
         return Promise.resolve(null);
       })
-      .catch((error) => Promise.reject(error));
+      .catch((error: Error) => Promise.reject(error));
   }
 }

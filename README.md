@@ -67,6 +67,16 @@ Install dependencies
 yarn install
 ```
 
+## Setup .env
+
+We're using `cross-env` to set the environment variable `NODE_ENV`. You can verify this in the `scripts` section of `package.json`.
+
+```bash
+  cp .env.example .env.local
+```
+
+After the `.env.local` has been created, set the needed variables and you are ready.
+
 ## Compile and run the project
 
 ```bash
@@ -77,7 +87,7 @@ $ yarn start
 $ yarn start:dev
 
 # production mode
-$ yarn start:prod
+$ yarn start:prod # needs .env.production
 ```
 
 ## Formatting
@@ -86,6 +96,12 @@ To normalize your files:
 
 ```bash
 npx prettier --write .
+```
+
+or simply run:
+
+```bash
+yarn format
 ```
 
 ## Run tests
