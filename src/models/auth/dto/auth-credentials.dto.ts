@@ -1,5 +1,5 @@
 import { IsEmail, IsString, Matches, MaxLength, MinLength } from 'class-validator';
-import { isUnique } from 'src/decorators/is-unique';
+import { isUnique } from 'src/common/decorators/is-unique';
 
 export class AuthCredentialsDto {
   @IsString()

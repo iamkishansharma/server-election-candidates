@@ -1,13 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors } from '@nestjs/common';
 import { PoliticalPartiesService } from './political-parties.service';
 import { CreatePoliticalPartyDto } from './dto/create-political-party.dto';
 import { UpdatePoliticalPartyDto } from './dto/update-political-party.dto';
+import { LocalizedDates } from 'src/common/decorators/localized-dates.decorator';
+import { LocaleTransformInterceptor } from 'src/common/interceptors/localeDate/locale-date-transform.interceptor';
 
 @Controller('political-parties')
+@UseInterceptors(LocaleTransformInterceptor)
 export class PoliticalPartiesController {
   constructor(private readonly politicalPartiesService: PoliticalPartiesService) {}
 
   @Post()
+  @LocalizedDates(['dissolved_date', 'founded_date'])
   create(@Body() createPoliticalPartyDto: CreatePoliticalPartyDto) {
     return this.politicalPartiesService.create(createPoliticalPartyDto);
   }

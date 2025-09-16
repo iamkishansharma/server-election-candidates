@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable } from '@nestjs/common';
 import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
-import { IsUniqueInterface } from 'src/decorators/is-unique';
+import { IsUniqueInterface } from 'src/common/decorators/is-unique';
 import { EntityManager } from 'typeorm';
 
 @ValidatorConstraint({ name: 'IsUniqueConstraint', async: true })
