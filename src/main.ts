@@ -1,7 +1,7 @@
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { TransformInterceptor } from './tranform.interceptor';
+import { TransformInterceptor } from './common/interceptors/tranform.interceptor';
 
 // logging libraries: *pino*, bunion, winston
 // import pino from 'pino';
@@ -27,4 +27,5 @@ async function bootstrap() {
 
   logger.log(`Application listening on port ${port}..`, 'APP');
 }
-bootstrap();
+
+bootstrap().catch(console.error);

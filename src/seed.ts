@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { Seeder } from './database/seeders/seeders';
 import { SeederModule } from './database/seeders/seeders.module';
 
-async function bootstrap() {
+function bootstrap() {
   NestFactory.createApplicationContext(SeederModule)
     .then((appContext) => {
       const logger = appContext.get(Logger);
@@ -17,7 +17,9 @@ async function bootstrap() {
           logger.error('Seeding failed!');
           throw error;
         })
-        .finally(() => appContext.close());
+        .finally(() => {
+          appContext.close().catch(console.error);
+        });
     })
     .catch((error) => {
       throw error;
