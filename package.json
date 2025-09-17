@@ -23,7 +23,7 @@
     "osnepal"
   ],
   "engines": {
-    "node": "=20.17.0",
+    "node": ">=20.17.0",
     "yarn": "=1.22.22"
   },
   "scripts": {
@@ -39,7 +39,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "orm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "migration:create": "yarn run orm migration:create ./src/database/migrations/migration",
+    "migration:generate": "yarn run orm migration:generate ./src/database/migrations/migration -d ./src/database/datasource.ts",
+    "migration:run": "yarn run orm migration:run -d ./src/database/datasource.ts",
+    "migration:revert": "yarn run orm migration:revert -d ./src/database/datasource.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -49,6 +54,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.2.0",
     "@nestjs/typeorm": "^11.0.0",
     "@sbmdkl/nepali-date-converter": "^2.0.4",
     "bcrypt": "^6.0.0",
@@ -58,6 +64,7 @@
     "mysql2": "^3.14.5",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.26"
