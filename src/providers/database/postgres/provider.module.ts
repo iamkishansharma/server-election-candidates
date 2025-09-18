@@ -24,6 +24,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           username: configService.get('DB_USERNAME'),
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_NAME'),
+          ssl:
+            configService.get('DB_HOST') === 'localhost' || configService.get('DB_HOST') === 'db'
+              ? false
+              : {
+                  rejectUnauthorized: true,
+                  ca: configService.get('DB_SSL_CERT'),
+                },
           // inject: [ConfigService],
         };
       },
