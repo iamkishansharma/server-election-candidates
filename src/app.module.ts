@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from './models/auth/auth.module';
-import { MysqlDatabaseProviderModule } from './providers/database/mysql/provider.module';
+import { PostgresDatabaseProviderModule } from './providers/database/postgres/provider.module';
 import { ConfigProviderModule } from './providers/config/provider.module';
 // import { ChatGateway } from './chat.gateway'
 import { PoliticalPartiesModule } from './models/political-parties/political-parties.module';
 
 @Module({
-  imports: [ConfigProviderModule, MysqlDatabaseProviderModule, AuthModule, PoliticalPartiesModule],
+  imports: [ConfigProviderModule, PostgresDatabaseProviderModule, AuthModule, PoliticalPartiesModule],
 
   //  Uncomment the ChatGateway provider for websocket boilerpate
   // requirements for websockets:

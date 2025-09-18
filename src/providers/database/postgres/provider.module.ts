@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 /**
- * Import and provide base typeorm (mysql) related classes.
+ * Import and provide base typeorm (Postgres) related classes.
  *
  * @module
  */
@@ -13,19 +13,21 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
+        const isProduction = configService.get('NODE_ENV') === 'production';
         return {
-          type: 'mysql',
+          type: 'postgres',
           autoLoadEntities: true,
           logger: 'debug',
-          synchronize: true,
+          synchronize: !isProduction,
           host: configService.get('DB_HOST'),
           port: configService.get('DB_PORT'),
           username: configService.get('DB_USERNAME'),
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_NAME'),
+          // inject: [ConfigService],
         };
       },
     }),
   ],
 })
-export class MysqlDatabaseProviderModule {}
+export class PostgresDatabaseProviderModule {}
